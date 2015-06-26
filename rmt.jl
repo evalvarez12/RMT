@@ -28,14 +28,6 @@ function BasisState(n::Int)
   return a
 end
 
-function purity_C(state::Array{Complex{Float64},1}) :
-  l=size(state)[1]
-  l=round(Int,l/2)
-  a=state[1:l]
-  b=state[l+1:end]
-  rho=[dot(a,conj(a)) dot(a,conj(b)) ; dot(b,conj(a)) dot(b,conj(b))]
-  return trace(rho*rho)
-end
 
 function Hamiltonian_CBA(nc::Int,nb::Int,na::Int,lamb::Float64)
   Hc=SIGMA_X
