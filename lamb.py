@@ -16,8 +16,8 @@ def one_run_fixed_t(Ham_func,nc,nb,na,lamb,time) :
 
 
 nc=2
-na=2**10
-nb=2**6
+na=2**6
+nb=2**3
 
 
 time=1000
@@ -38,12 +38,12 @@ for lamb in arange(0.001,1.005,0.005) :
 
 
 save("Pxlambda",Ps)
-plot(arange(0.001,1.005,0.005),Ps,markevery=20)
+#plot(arange(0.001,1.005,0.005),Ps,markevery=20)
 
   
   
-ylabel("$P$",fontsize=28)
-xlabel("$\lambda$",fontsize=28)
+#ylabel("$P$",fontsize=28)
+#xlabel("$\lambda$",fontsize=28)
 
-show()
+#show()
 

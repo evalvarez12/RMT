@@ -1,0 +1,17 @@
+from pylab import *
+
+lines=['o-','<-','p-','v-','+-','^-','h-','D-','>-','H-','d-','s-','x-','*-']
+li=0
+
+
+for lamb in [.001,.01,.05,.1,.5] :
+  PS=load("g3_p_lambda="+str(lamb)+"_2q.npy")
+  plot(PS,lines[li],markevery=50,label="$\lambda="+str(lamb)+"$")
+  li+=1
+  
+  
+  
+ylabel("$P$",fontsize=28)
+xlabel("$t$",fontsize=28)
+legend(loc='lower left',fontsize=25)
+show()

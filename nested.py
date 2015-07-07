@@ -15,7 +15,7 @@ def one_run(Ham_func,nc,nb,na,lamb,time) :
     state_t=dot(W,exp(-1j*E*i)*stateW)
     #print real(rmt.purity_C(state_t))
     purities.append(rmt.purity_C(state_t).real)
-    #concurrences.append(rmt.concurence(state_t))
+    #concurrences.append(rmt.concurrence(state_t))
   #return [array(purities),array(concurrences)]
   return array(purities)
 
@@ -24,15 +24,14 @@ def one_run(Ham_func,nc,nb,na,lamb,time) :
 
 nc=2
 na=2**6
-nb=2**3
-
+lamb=0.01
 
 time=2500
 
-lines=['o-','<-','p-','v-','+-','^-','h-','D-','>-','H-','d-','s-','x-','*-']
-li=0
+
 ave=50
-for lamb in [.001,.01,.05,.1,.5] :
+for l in [2,4,5] :
+  nb=2**l
   PS=zeros(time)
   #CS=zeros(time)
   for j in range(ave) :
@@ -43,14 +42,9 @@ for lamb in [.001,.01,.05,.1,.5] :
   print lamb  
   PS=PS/double(ave)
   #CS=CS/double(ave)
-  save("g1_p_lambda="+str(lamb)+"_2q",PS)
+  save("g4_p_Asize="+str(l),PS)
   #save("g3_c_lambda="+str(lamb)+"_2q",CS)
   #plot(PS,lines[li],markevery=50,label="$\lambda="+str(lamb)+"$")
-  #li+=1
-  
-  
-#ylabel("$P$",fontsize=28)
-#xlabel("$t$",fontsize=28)
-#legend(loc='lower left',fontsize=25)
-#show()
 
+  
+  
