@@ -1,6 +1,8 @@
 #RMT in julia
 #Eduardo Villaseñor - evalvarez12@gmail.com
 
+#kron(a,b) a queda al final del total
+
 SIGMA_X=[0 1 ; 1 0]
 SIGMA_Y=[ 0 -im*1 ; im*1 0]
 SIGMA_Z=[1 0 ; 0 -1]
@@ -42,3 +44,12 @@ function Hamiltonian_CBA(nc::Int,nb::Int,na::Int,lamb::Float64)
 end
 
 
+function purity(state) 
+  l=size(state)[1]
+  l=round(Int,l/2)
+  a=state[1:l]
+  b=state[l+1:end]
+  rho=[dot(a,a) dot(b,a) ; dot(a,b) dot(b,b)]
+  p=real(trace(rho*rho))
+  return p
+end

@@ -110,3 +110,14 @@ def Hamiltonian_CBA(dim_c,dim_b,dim_a,lamb) :
   H=kron(Hc,eye(dim_a*dim_b))+kron(Ic,Hab)+lamb*kron(Vcb,Ia)
   return H
 
+def Hamiltonian_CBA_2special(dim_c,dim_b,dim_a,lamb) :
+  Hc=SIGMA_X_SUM(dim_c)
+  Hab=GUE(dim_a*dim_b)
+  Vcb=GUE(2*dim_b)
+  Ia=eye(dim_a)
+  Ib=eye(dim_b)
+  Ic=eye(dim_c)
+  
+  H=kron(Hc,eye(dim_a*dim_b))+kron(Ic,Hab)+lamb*kron(kron(Vcb,eye(2)),Ia)
+  return H
+
