@@ -1,1 +1,6 @@
 *.npy
+*.dat
+*.out
+*.log
+*.aux
+

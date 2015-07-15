@@ -36,8 +36,8 @@ def concurrence(state) :
   b2=b[l/4:]
   rho=array([[dot(a1,a1.conjugate()),dot(a1,a2.conjugate()),dot(a1,b1.conjugate()),dot(a1,b2.conjugate())],[dot(a2,a1.conjugate()),dot(a2,a2.conjugate()),dot(a2,b1.conjugate()),dot(a2,b2.conjugate())],[dot(b1,a1.conjugate()),dot(b1,a2.conjugate()),dot(b1,b1.conjugate()),dot(b1,b2.conjugate())],[dot(b2,a1.conjugate()),dot(b2,a2.conjugate()),dot(b2,b1.conjugate()),dot(b2,b2.conjugate())]])
   sig_y=SIGMA_Y_GEN(4)
-  rho2=sig_y*rho.conjugate()*sig_y
-  E,W=eig(sqrt(sqrt(rho)*rho2*sqrt(rho)))
+  rho2=dot(dot(sig_y,rho.conjugate()),sig_y)
+  E,W=eig(sqrt(dot(dot(sqrt(rho),rho2),sqrt(rho))))
   E=sort(E)  
   return max([0.,E[3]-E[2]-E[1]-E[0]])
   
