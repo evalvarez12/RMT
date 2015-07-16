@@ -13,6 +13,12 @@ function GUE(n::Int)
   normalization = sqrt(2*n)
   return (A + A') / normalization
 end
+
+function GOE(n::Int) 
+  A = randn(n, n)
+  normalization = sqrt(2*n)
+  return (A + A') / normalization
+end
   
  
 function RandState(n::Int)
@@ -57,27 +63,28 @@ function SIGMA_Y_GEN(nc)
   return H
 end  
 
-function Hamiltonian_CBA(nc::Int,nb::Int,na::Int,lamb::Float64)
+function Hamiltonian_CBA(nb::Int,na::Int,lamb::Float64)
+  #CON nc=2 
   Hc=SIGMA_X
-  Hab=GUE(na*nb)
-  Vcb=GUE(nc*nb)
+  Hab=GOE(na*nb)
+  Vcb=kron(SIGMA_Z,GOE(nb))
+  #Vcb=GOE(2*nb)
   Ia=eye(na)
-  Ib=eye(nb)
-  Ic=eye(nc)
+  Ic=eye(2)
   
   H=kron(Hc,eye(na*nb))+kron(Ic,Hab)+lamb*kron(Vcb,Ia)
   return H
 end
 
-function Hamiltonian_CBA_2special(nc::Int,nb::Int,na::Int,lamb::Float64)
-  Hc=SIGMA_X_SUM(nc)
-  Hab=GUE(na*nb)
-  Vcb=GUE(2*nb)
+function Hamiltonian_CBA_2spectator(nb::Int,na::Int,lamb::Float64)
+  #CON nc=4
+  Hc=SIGMA_X_SUM(4)
+  Hab=GOE(na*nb)
+  Vcb=kron(SIGMA_Z,GOE(nb))
   Ia=eye(na)
-  Ib=eye(nb)
-  Ic=eye(nc)
+  Ic=eye(4)
   
-  H=kron(Hc,eye(na*nb))+kron(Ic,Hab)+lamb*kron(kron(Vcb,eye(2)),Ia)
+  H=kron(Hc,eye(na*nb))+kron(Ic,Hab)+lamb*kron(kron(eye(2),Vcb),Ia)
   return H
 end
 
