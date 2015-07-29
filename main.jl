@@ -22,14 +22,17 @@ function one_run(Hamiltonian_func,nb,na,lamb,time)
 end
 
 
-na=2^8
+na=2^7
 nb=2^4
 lamb=.01
 
 time=2000
 
 p=one_run(Hamiltonian_CBA,nb,na,lamb,time) 
-writedlm("g1_p_lamb=.01_na=2^8_nb=2^4.dat",p)
+
+num_dat=string(ARGS[1],".dat")
+name=string("g1_p_lamb=.01_na=2^7_nb=2^4_",num_dat)
+writedlm(name,p)
 
 
 # plot(purs)  
