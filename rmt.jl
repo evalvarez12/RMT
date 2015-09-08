@@ -65,14 +65,37 @@ end
 
 function Hamiltonian_CBA(nb::Int,na::Int,lamb::Float64)
   #CON nc=2 
-  Hc=SIGMA_X
+  Hc=SIGMA_Z
   Hab=GOE(na*nb)
-  Vcb=kron(SIGMA_Z,GOE(nb))
-  #Vcb=GOE(2*nb)
+  #Vcb=kron(SIGMA_Z,GOE(nb))
+  Vcb=GOE(2*nb)
   Ia=eye(na)
   Ic=eye(2)
   
   H=kron(Hc,eye(na*nb))+kron(Ic,Hab)+lamb*kron(Vcb,Ia)
+  return H
+end
+
+function Hamiltonian_CBA(nb::Int,na::Int,lamb::Float64, mu::Float64)
+  #CON nc=2 
+  Hc=mu*SIGMA_Z
+  Hab=GOE(na*nb)
+  #Vcb=kron(SIGMA_Z,GOE(nb))
+  Vcb=GOE(2*nb)
+  Ia=eye(na)
+  Ic=eye(2)
+  
+  H=kron(Hc,eye(na*nb))+kron(Ic,Hab)+lamb*kron(Vcb,Ia)
+  return H
+end
+
+function Hamiltonian_CBA_2(nb::Int,na::Int,lamb::Float64)
+  #CON nc=2 
+  Hcb=lamb*kron(SIGMA_Z,GOE(nb))
+  Hab=GOE(na*nb)
+  Ic=eye(2)
+  
+  H=kron(Hcb,eye(na))+kron(Ic,Hab)
   return H
 end
 
