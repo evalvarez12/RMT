@@ -8,8 +8,8 @@ function one_run(Hamiltonian_func,nb,na,lamb,mu,time)
   P_ave=zeros(time)
   for i in range(0,ave)
     state=kron(BasisState(2),kron(RandState(nb),RandState(na)))
-    #H=Hamiltonian_func(nb,na,lamb,mu)
-    H=Hamiltonian_func(nb,na,lamb)
+    H=Hamiltonian_func(nb,na,lamb,mu)
+    #H=Hamiltonian_func(nb,na,lamb)
     E,W=eig(H)
     state=(W')*state
     purs=[]

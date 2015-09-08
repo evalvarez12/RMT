@@ -65,7 +65,7 @@ end
 
 function Hamiltonian_CBA(nb::Int,na::Int,lamb::Float64)
   #CON nc=2 
-  Hc=SIGMA_Z
+  Hc=SIGMA_X
   Hab=GOE(na*nb)
   #Vcb=kron(SIGMA_Z,GOE(nb))
   Vcb=GOE(2*nb)
@@ -78,7 +78,7 @@ end
 
 function Hamiltonian_CBA(nb::Int,na::Int,lamb::Float64, mu::Float64)
   #CON nc=2 
-  Hc=mu*SIGMA_Z
+  Hc=mu*SIGMA_X
   Hab=GOE(na*nb)
   #Vcb=kron(SIGMA_Z,GOE(nb))
   Vcb=GOE(2*nb)
